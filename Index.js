@@ -4,8 +4,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-var imageUrl = 'Denah.png';
-var imageBounds = [[0, 0], [1600,1280]];
+var imageUrl = 'test.jpg';
+var imageBounds = [[-500,0], [100, 500]];
 
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
