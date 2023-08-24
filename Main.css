@@ -1,0 +1,12 @@
+.sidebar{
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.map-container {
+    padding: 0;
+}
+
+#map {
+    height: 100vh;
+}
