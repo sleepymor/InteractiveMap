@@ -61,7 +61,8 @@ map.on("click", function(e) {
         longitude: e.latlng.lng,
         brand: pcMerek,
         hostname: pcHostname,
-        date: pcTanggal
+        date: pcTanggal,
+        lokasi: form.lokasi.value
       })
     });
 
@@ -77,7 +78,7 @@ map.on("click", function(e) {
         .addTo(map)
         .bindPopup(`
           <strong>Merek PC:</strong> ${pcMerek}<br>
-          <strong>Merek PC:</strong> ${lokasi}<br>
+          <strong>Lokasi:</strong> ${form.lokasi.value}<br>
           <strong>Hostname:</strong> ${pcHostname}<br>
           <strong>Tanggal:</strong> ${pcTanggal}
           <br><button id="removeMarkerButton">Remove Marker</button>

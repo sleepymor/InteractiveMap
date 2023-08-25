@@ -1,17 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const db = require('./db'); // Import database connection
+const router = express.Router();
+const db = require('db.js'); 
 
-const app = express();
-const port = 3000;
-
-app.use(bodyParser.json());
-
-app.post('/api/hardware', async (req, res) => {
-  const { latitude, longitude, brand, hostname, date } = req.body;
+router.post('/api/hardware', async (req, res) => {
+  const { latitude, longitude, brand, hostname, lokasi, date } = req.body;
 
   try {
-    const locationId = await db.insertLocation(latitude, longitude);
+    const locationId = await db.insertLocation(latitude, longitude, lokasi); // Pass lokasi to the function
     await db.insertHardware(locationId, brand, hostname, date);
     res.status(200).json({ message: 'Hardware data added successfully' });
   } catch (error) {
@@ -20,6 +15,4 @@ app.post('/api/hardware', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = router;

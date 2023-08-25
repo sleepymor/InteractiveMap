@@ -2,8 +2,8 @@ const mysql = require('mysql');
 
 const db = mysql.createConnection({
   host: 'localhost',
+  port: 3306, 
   user: 'root',
-  password: 'your_password',
   database: 'hardware_tracking'
 });
 
@@ -14,7 +14,7 @@ db.connect((err) => {
 
 function insertLocation(latitude, longitude) {
   return new Promise((resolve, reject) => {
-    const query = 'INSERT INTO location (latitude, longitude) VALUES (?, ?)';
+    const query = 'INSERT INTO locations (latitude, longitude) VALUES (?, ?)';
     db.query(query, [latitude, longitude], (err, result) => {
       if (err) reject(err);
       resolve(result.insertId);
@@ -25,9 +25,9 @@ function insertLocation(latitude, longitude) {
 function insertHardware(locationId, brand, hostname, date) {
   return new Promise((resolve, reject) => {
     const query = 'INSERT INTO hardware (location_id, brand, hostname, date) VALUES (?, ?, ?, ?)';
-    db.query(query, [locationId, brand, hostname, date], (err) => {
+    db.query(query, [locationId, brand, hostname, date], (err, result) => {
       if (err) reject(err);
-      resolve();
+      resolve(result);
     });
   });
 }
